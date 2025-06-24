@@ -1,11 +1,6 @@
 {
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    }
-  },
-  "ignoreCommand": "echo 'Skipping ignore'",
-  "installCommand": "npm install",
   "buildCommand": "npx vite build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "ignoreCommand": "echo 'ignore'"
 }
