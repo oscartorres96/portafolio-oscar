@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import avatar from "./assets/avatar-dev.png"; // Ruta ilustración personalizada
+import logoOT from "./assets/logot.png"; // Logo con iniciales OT
+import { SiPython, SiDjango, SiJavascript, SiReact, SiVuedotjs, SiMongodb, SiTailwindcss, SiApacheairflow } from "react-icons/si";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -25,20 +33,24 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black text-gray-800 dark:text-gray-100 font-sans">
-      <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-extrabold tracking-tight text-emerald-600">Oscar Torres</h1>
-          <div className="flex items-center gap-4">
-            <nav className="space-x-6 text-sm font-medium">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-[#0c0f13] dark:to-[#1a1e23] text-gray-800 dark:text-gray-100 font-sans transition-colors duration-500">
+      <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap gap-4">
+          <div className="flex items-center gap-3">
+            <img src={avatar} alt="Oscar Dev" className="w-10 h-10 rounded-full border border-emerald-500 shadow-md" />
+            <h1 className="text-2xl font-extrabold tracking-tight text-emerald-600">Oscar Torres</h1>
+          </div>
+          <div className="flex items-center gap-4 flex-wrap justify-end">
+            <nav className="flex flex-wrap gap-4 text-sm font-medium justify-center">
               <a href="#about" className="hover:text-emerald-600 transition">Sobre mí</a>
               <a href="#portfolio" className="hover:text-emerald-600 transition">Portafolio</a>
               <a href="#blog" className="hover:text-emerald-600 transition">Blog</a>
+              <a href="#skills" className="hover:text-emerald-600 transition">Skills</a>
               <a href="#contact" className="hover:text-emerald-600 transition">Contacto</a>
             </nav>
             <button
               onClick={toggleTheme}
-              className="ml-4 text-sm bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+              className="text-sm bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full shadow-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition"
             >
               {darkMode ? "☀️ Claro" : "🌙 Oscuro"}
             </button>
@@ -46,74 +58,93 @@ export default function App() {
         </div>
       </header>
 
-      <section className="py-32 text-center bg-[url('/bg-pattern.svg')] bg-cover bg-no-repeat bg-center dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="relative py-32 text-center bg-gradient-to-r from-emerald-50 via-white to-emerald-100 dark:from-[#14191f] dark:via-[#101419] dark:to-[#14191f] overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/hero-pattern.svg')] bg-cover bg-no-repeat opacity-10 pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-5xl font-extrabold mb-6 leading-tight"
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight"
           >
             Hola, soy <span className="text-emerald-600">Oscar</span> 👋
           </motion.h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+          <motion.p
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed"
+          >
             Desarrollador fullstack con foco en soluciones inteligentes y eficientes. Experto en Python, Django, Vue y React.
-          </p>
-          <a
+          </motion.p>
+          <motion.a
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 1.1, ease: "easeOut" }}
             href="#contact"
             className="inline-block bg-emerald-600 text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-all shadow-md"
           >
             Contáctame
-          </a>
+          </motion.a>
         </div>
       </section>
 
-      <section id="about" className="py-24 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-6">Sobre mí</h2>
-        <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300">
-          Ingeniero de Datos y Desarrollador Fullstack. Apasionado por construir sistemas robustos, escalables y visualmente atractivos.
-        </p>
+      <section id="skills" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+        <motion.h2
+          className="text-3xl font-bold mb-12 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          Tecnologías que domino
+        </motion.h2>
+        <motion.div
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          {[{
+            icon: <SiPython size={40} />, name: "Python"
+          }, {
+            icon: <SiDjango size={40} />, name: "Django"
+          }, {
+            icon: <SiJavascript size={40} />, name: "JavaScript"
+          }, {
+            icon: <SiReact size={40} />, name: "React"
+          }, {
+            icon: <SiVuedotjs size={40} />, name: "Vue.js"
+          }, {
+            icon: <SiMongodb size={40} />, name: "MongoDB"
+          }, {
+            icon: <SiTailwindcss size={40} />, name: "Tailwind CSS"
+          }, {
+            icon: <SiApacheairflow size={40} />, name: "Apache Airflow"
+          }].map((tech, idx) => (
+            <motion.div
+              key={idx}
+              className="flex flex-col items-center gap-2 bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow hover:scale-105 transition-transform"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="text-emerald-600 dark:text-emerald-400">
+                {tech.icon}
+              </div>
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-200">{tech.name}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
-      <section id="portfolio" className="py-24 bg-gray-50 dark:bg-gray-800 px-6">
-        <h2 className="text-3xl font-bold mb-12 text-center">Proyectos destacados</h2>
-        <div className="grid gap-10 md:grid-cols-2 max-w-6xl mx-auto">
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-xl transition hover:scale-[1.01]">
-            <h3 className="text-xl font-bold mb-2 text-emerald-700">MarcaPersonal App</h3>
-            <p className="text-sm mb-4 text-gray-600 dark:text-gray-300">App para registrar PRs de entrenamiento, con gráficos y autenticación.</p>
-            <div className="flex flex-wrap gap-2 text-xs font-medium text-gray-600 dark:text-gray-400 mb-4">
-              <span className="bg-emerald-50 dark:bg-gray-700 border border-emerald-200 dark:border-gray-600 px-2 py-1 rounded-full">Django</span>
-              <span className="bg-emerald-50 dark:bg-gray-700 border border-emerald-200 dark:border-gray-600 px-2 py-1 rounded-full">Vue.js</span>
-              <span className="bg-emerald-50 dark:bg-gray-700 border border-emerald-200 dark:border-gray-600 px-2 py-1 rounded-full">MongoDB</span>
-            </div>
-            <a href="https://gitlab.com/tu_usuario/marcapersonal" target="_blank" className="text-emerald-600 hover:underline font-medium">Ver código en GitLab</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="blog" className="py-24 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12 text-center">Últimos artículos</h2>
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-md hover:shadow-xl transition">
-            <h3 className="text-xl font-bold mb-2 text-emerald-700">¿Qué es POO en Python? 🐍</h3>
-            <p className="text-sm mb-4 text-gray-600 dark:text-gray-300">Entiende los conceptos clave de la programación orientada a objetos en Python.</p>
-            <a href="#" className="text-emerald-600 hover:underline font-medium text-sm">Leer más</a>
-          </div>
-        </div>
-      </section>
-
-      <footer id="contact" className="bg-white dark:bg-gray-900 border-t dark:border-gray-700 py-20 px-6 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold mb-4">¿Trabajamos juntos?</h2>
-          <p className="mb-4 text-gray-600 dark:text-gray-300">
-            Escríbeme a <a href="mailto:oscar@email.com" className="underline hover:text-emerald-600">oscar@email.com</a>
-          </p>
-          <div className="space-x-6 text-sm">
-            <a href="https://www.linkedin.com/in/tuusuario" target="_blank" className="hover:text-emerald-600 font-medium">LinkedIn</a>
-            <a href="https://gitlab.com/tu_usuario" target="_blank" className="hover:text-emerald-600 font-medium">GitLab</a>
-          </div>
-        </div>
-      </footer>
+      {/* Marca flotante con logo OT */}
+      <img
+        src={logoOT}
+        alt="Logo OT"
+        className="fixed bottom-4 right-4 w-14 h-14 opacity-70 hover:opacity-100 transition-opacity z-50 bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-full p-2 shadow-lg"
+      />
     </div>
   );
 }
